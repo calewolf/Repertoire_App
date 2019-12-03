@@ -1,81 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:id="@+id/topButtonsGroup"
-        android:layout_width="400dp"
-        android:layout_height="44dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/songsList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/filterButton"
+            android:id="@+id/doFilterButton"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Filter"
-            android:visibility="visible" />
-
-        <Button
-            android:id="@+id/settingsButton"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Settings" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/songsList"
-        android:layout_width="0dp"
-        android:layout_height="558dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:background="#2CFFFFFF"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/bottomButtonsGroup"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topButtonsGroup">
-
-        <TextView
-            android:id="@+id/simpleText"
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="This is where the song list will go." />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/bottomButtonsGroup"
-        android:layout_width="357dp"
-        android:layout_height="45dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/songsList">
-
-        <Button
-            android:id="@+id/searchButton"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@android:string/search_go"
+            android:text="Filter"
             android:visibility="visible" />
 
         <Button
             android:id="@+id/addSongButton"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Add Song" />
+
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/songsList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="80"
+        android:orientation="vertical" >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray"
+            android:padding="4dp"
+            android:scrollbars="vertical" />
+    </LinearLayout>
+
+</LinearLayout>
