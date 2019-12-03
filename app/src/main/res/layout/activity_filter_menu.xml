@@ -7,6 +7,65 @@
     android:layout_height="match_parent">
 
 
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filterLabel">
+
+        <RadioButton
+            android:id="@+id/aToZButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A - Z" />
+
+        <RadioButton
+            android:id="@+id/zToAButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Z - A" />
+
+        <RadioButton
+            android:id="@+id/leastRecentButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Least Recent" />
+
+        <RadioButton
+            android:id="@+id/mostRecentButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Most Recent" />
+
+        <RadioButton
+            android:id="@+id/leastPlayedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Least Played" />
+
+        <RadioButton
+            android:id="@+id/mostPlayedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Most Played" />
+
+        <RadioButton
+            android:id="@+id/fastestButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fastest" />
+
+        <RadioButton
+            android:id="@+id/slowestButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Slowest" />
+
+    </RadioGroup>
+
     <TextView
         android:id="@+id/filterLabel"
         android:layout_width="152dp"
@@ -21,78 +80,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RadioButton
-        android:id="@+id/aToZButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
-        android:text="A - Z"
-        app:layout_constraintStart_toStartOf="@+id/filterLabel"
-        app:layout_constraintTop_toBottomOf="@+id/filterLabel" />
-
-    <RadioButton
-        android:id="@+id/zToAButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Z - A"
-        app:layout_constraintStart_toStartOf="@+id/aToZButton"
-        app:layout_constraintTop_toBottomOf="@+id/aToZButton" />
-
-    <RadioButton
-        android:id="@+id/mostRecentButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Most Recent"
-        app:layout_constraintStart_toStartOf="@+id/zToAButton"
-        app:layout_constraintTop_toBottomOf="@+id/zToAButton" />
-
-    <RadioButton
-        android:id="@+id/leastRecentButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Least Recent"
-        app:layout_constraintStart_toStartOf="@+id/mostRecentButton"
-        app:layout_constraintTop_toBottomOf="@+id/mostRecentButton" />
-
-    <RadioButton
-        android:id="@+id/mostPlayedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Most Played"
-        app:layout_constraintStart_toStartOf="@+id/leastRecentButton"
-        app:layout_constraintTop_toBottomOf="@+id/leastRecentButton" />
-
-    <RadioButton
-        android:id="@+id/leastPlayedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Least Played"
-        app:layout_constraintStart_toStartOf="@+id/mostPlayedButton"
-        app:layout_constraintTop_toBottomOf="@+id/mostPlayedButton" />
-
-    <RadioButton
-        android:id="@+id/slowestButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Slowest"
-        app:layout_constraintStart_toStartOf="@+id/leastPlayedButton"
-        app:layout_constraintTop_toBottomOf="@+id/leastPlayedButton" />
-
-    <RadioButton
-        android:id="@+id/fastestButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fastest"
-        app:layout_constraintStart_toStartOf="@+id/slowestButton"
-        app:layout_constraintTop_toBottomOf="@+id/slowestButton" />
-
 
     <EditText
         android:id="@+id/styleTextBox"
-        android:layout_width="172dp"
-        android:layout_height="41dp"
+        android:layout_width="208dp"
+        android:layout_height="42dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginEnd="16dp"
@@ -110,14 +102,16 @@
         android:layout_height="49dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="450dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="286dp"
         android:text="Clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/styleTextBox" />
-
+        app:layout_constraintStart_toEndOf="@+id/styleTextBox"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/cancelButton"
@@ -138,7 +132,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:text="Filter"

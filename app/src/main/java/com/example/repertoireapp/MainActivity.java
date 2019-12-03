@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View unused) {
                 System.out.println("The add song button was clicked.");
-                // TODO: Implement switching activities to the add song menu.
+                addSongButtonClicked();
             }
         });
 
@@ -53,9 +54,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View unused) {
                 System.out.println("The filter button was clicked.");
-                // TODO: Implement switching activities to the filter menu.
+                filterButtonClicked();
             }
         });
+    }
+
+    public void filterButtonClicked() {
+        Intent intent = new Intent(this, FilterMenuActivity.class);
+        startActivity(intent);
+    }
+    public void addSongButtonClicked() {
+        Intent intent = new Intent(this, AddSongActivity.class);
+        startActivity(intent);
     }
 }
 
