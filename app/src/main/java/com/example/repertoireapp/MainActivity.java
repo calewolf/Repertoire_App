@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 filterButtonClicked();
             }
         });
+
     }
 
     public void filterButtonClicked() {
