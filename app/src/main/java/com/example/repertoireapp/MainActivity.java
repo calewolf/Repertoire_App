@@ -10,12 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ArrayList<Song> songList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,19 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO: The Song objects are kept in an ArrayList. Here they are preset.
         // TODO: Find a way to add and remove songs using the buttons in the app.
-        ArrayList<Song> songList = new ArrayList<>();
-        songList.add(new Song("Song Title"));
-        songList.add(new Song("Here's Song Number Two"));
-        songList.add(new Song("Here's a Third Song With A Longer Title (etc.)"));
+        createSongList();
+        buildRecyclerView();
 
-        mRecyclerView = findViewById(R.id.recyclerView); // Stores reference to the RecyclerView
-        mRecyclerView.setHasFixedSize(true); // Makes sure it has a fixed size
-        mLayoutManager = new LinearLayoutManager(this);
 
-        // Sets up the RecyclerView adapter. This connects the song list to the layout itself.
-        mAdapter = new LayoutAdapter(songList);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
+
+
 
         // This sets up a listener for the add song button.
         Button addSongButton = findViewById(R.id.addSongButton);
@@ -66,7 +61,27 @@ public class MainActivity extends AppCompatActivity {
     }
     public void addSongButtonClicked() {
         Intent intent = new Intent(this, AddSongActivity.class);
+        intent.putExtra("Song List", songList);
+        intent.putExtra("Adapter", mAdapter);
         startActivity(intent);
+    }
+    public void createSongList() {
+        songList = new ArrayList<>();
+        songList.add(new Song("This is an example song", "Funk", "150 bpm", "Em", "Last played: 11/15/19", "Total: 70 min."));
+    }
+    public void buildRecyclerView() {
+        mRecyclerView = findViewById(R.id.recyclerView); // Stores reference to the RecyclerView
+        mRecyclerView.setHasFixedSize(true); // Makes sure it has a fixed size
+        mLayoutManager = new LinearLayoutManager(this);
+
+        // Sets up the RecyclerView adapter. This connects the song list to the layout itself.
+        mAdapter = new LayoutAdapter(songList);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+    public void insertSong(Song toAdd) {
+        songList.add(toAdd);
+        mAdapter.notifyDataSetChanged();
     }
 }
 

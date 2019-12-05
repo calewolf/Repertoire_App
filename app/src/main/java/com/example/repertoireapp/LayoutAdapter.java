@@ -21,10 +21,20 @@ public class LayoutAdapter extends RecyclerView.Adapter<LayoutAdapter.SongViewHo
 
 
     public static class SongViewHolder extends RecyclerView.ViewHolder {
-        public TextView tempText;
+        public TextView titleText;
+        public TextView styleText;
+        public TextView tempoText;
+        public TextView keyText;
+        public TextView lastPlayedText;
+        public TextView totalPlaytimeText;
         public SongViewHolder(@NonNull View itemView) {
             super(itemView);
-            tempText = itemView.findViewById(R.id.titleText);
+            titleText = itemView.findViewById(R.id.titleText);
+            styleText = itemView.findViewById(R.id.menuStyleText);
+            tempoText = itemView.findViewById(R.id.menuTempoText);
+            keyText = itemView.findViewById(R.id.menuKeyText);
+            lastPlayedText = itemView.findViewById(R.id.menuLastPlayedText);
+            totalPlaytimeText = itemView.findViewById(R.id.totalPlaytimeText);
         }
     }
 
@@ -43,7 +53,12 @@ public class LayoutAdapter extends RecyclerView.Adapter<LayoutAdapter.SongViewHo
     @Override
     public void onBindViewHolder(@NonNull SongViewHolder holder, int position) {
         Song currentItem = mySongList.get(position);
-        holder.tempText.setText(currentItem.getTempText());
+        holder.titleText.setText(currentItem.getTitle());
+        holder.styleText.setText(currentItem.getStyle());
+        holder.tempoText.setText(currentItem.getTempo());
+        holder.keyText.setText(currentItem.getKey());
+        holder.lastPlayedText.setText(currentItem.getLastPlayedDate());
+        holder.totalPlaytimeText.setText(currentItem.getTotalPlayMinutes());
     }
 
     @Override
