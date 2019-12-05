@@ -5,11 +5,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 // TODO: (ADAM) Implement the "log song" button using the clock on the Android phone.
 
@@ -26,7 +32,8 @@ import java.util.ArrayList;
 /**
  * Represents the main activity of the app.
  */
-public class MainActivity extends AppCompatActivity {
+public class
+MainActivity extends AppCompatActivity {
 
     /** This is the layout manager for the recycler view. */
     public RecyclerView.LayoutManager mLayoutManager;
@@ -147,13 +154,36 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK) { // If the response comes from the add song menu
             String[] song = data.getStringArrayExtra("songData");
 
-            // TODO: (ADAM) Find a way to get the date/time the button was pressed.
-            // TODO: (ADAM) Convert it to string format MM/DD/YY at 00:00 AM/PM
-            String dateTime = "This is filler";
+            // TODO: (ADAM) Find a way to get the date/time the button was pressed. (DONE)
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = preferences.edit();
+            //editor.putString("Date and Time Saved", new Date().toString());
+
+
+            // TODO: (ADAM) Convert it to string format MM/DD/YY at 00:00 AM/PM (DONE)
+            String dateTime = preferences.getString("Date and Time Saved", "");
 
             Song newSong = new Song(song[0], song[1], song[2], song[3],
                     dateTime, 0);
 
+            SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
+
+            try {
+                Date newDate = format.parse(dateTime);
+                System.out.println(dateTime);
+                SimpleDateFormat newFormat = new SimpleDateFormat("MM/dd/YY hh:mm a");
+                //format.applyPattern("MM/dd/YY hh:mm a"); // = new SimpleDateFormat("MM/DD/YY at hh:mm a");
+                String date = newFormat.format(format.parse(dateTime));
+                String s = date.substring(0, 8) + " at " + date.substring(9);
+                System.out.println(s);
+                editor.putString("Date and Time Saved", s);
+                //System.out.println(date);
+                //Log.d("print", dateTime);
+            }catch(java.text.ParseException e){
+
+            }
+
+            editor.apply();
             songList.add(newSong);
             mAdapter.notifyDataSetChanged();
 
@@ -175,8 +205,44 @@ public class MainActivity extends AppCompatActivity {
 
                 songList.get(positionToModify).addPlaytime(min);
 
-                // TODO: (ADAM) Same as above. Get date/time and pass it to method.
-                String dateTime = "This is filler";
+                // TODO: (ADAM) Same as above. Get date/time and pass it to method. (DONE)
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+                SharedPreferences.Editor editor = preferences.edit();
+                //editor.putString("Date and Time Saved", new Date().toString());
+
+                String dateTime = preferences.getString("Date and Time Saved", "");
+                System.out.println(dateTime);
+
+
+                SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
+
+                try {
+                    Date newDate = format.parse(dateTime);
+                    System.out.println(dateTime);
+                    SimpleDateFormat newFormat = new SimpleDateFormat("MM/dd/YY hh:mm a");
+                    //format.applyPattern("MM/dd/YY hh:mm a"); // = new SimpleDateFormat("MM/DD/YY at hh:mm a");
+                    String date = newFormat.format(format.parse(dateTime));
+                    String s = date.substring(0, 8) + " at " + date.substring(9);
+                    System.out.println(s);
+                    editor.putString("Date and Time Saved", s);
+                    //System.out.println(date);
+                    //Log.d("print", dateTime);
+                }catch(java.text.ParseException e){
+
+                }
+
+                editor.apply();
+                /**
+                SimpleDateFormat format = new SimpleDateFormat("MM/DD/YY at hh:mm a");
+                String date = format.format(Date.parse("Date and Time Saved"));
+
+                 SimpleDateFormat dt = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz YYYY");
+                 Date newDate = dt.parse(dateTime);
+                 SimpleDateFormat theFormat = new SimpleDateFormat("MM/DD/YY at hh:mm a");
+                 String date = theFormat.format(newDate);
+                 **/
+
+                //editor.apply();
 
                 songList.get(positionToModify).setLastPlayedDate(dateTime);
                 mAdapter.notifyDataSetChanged();
