@@ -155,6 +155,7 @@ MainActivity extends AppCompatActivity {
             String[] song = data.getStringArrayExtra("songData");
 
             // TODO: (ADAM) Find a way to get the date/time the button was pressed. (DONE)
+
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = preferences.edit();
             //editor.putString("Date and Time Saved", new Date().toString());
@@ -184,6 +185,7 @@ MainActivity extends AppCompatActivity {
             }
 
             editor.apply();
+
             songList.add(newSong);
             mAdapter.notifyDataSetChanged();
 
@@ -210,23 +212,19 @@ MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 //editor.putString("Date and Time Saved", new Date().toString());
 
-                String dateTime = preferences.getString("Date and Time Saved", "");
-                System.out.println(dateTime);
 
 
                 SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
+                SimpleDateFormat newFormat = new SimpleDateFormat("MM/dd/YY hh:mm a");
+                String dateTime = "";
 
                 try {
-                    Date newDate = format.parse(dateTime);
+                    dateTime = newFormat.format(format.parse(new Date().toString()));
+                    dateTime = dateTime.substring(0, 8) + " at " + dateTime.substring(9);
                     System.out.println(dateTime);
-                    SimpleDateFormat newFormat = new SimpleDateFormat("MM/dd/YY hh:mm a");
-                    //format.applyPattern("MM/dd/YY hh:mm a"); // = new SimpleDateFormat("MM/DD/YY at hh:mm a");
-                    String date = newFormat.format(format.parse(dateTime));
-                    String s = date.substring(0, 8) + " at " + date.substring(9);
-                    System.out.println(s);
-                    editor.putString("Date and Time Saved", s);
-                    //System.out.println(date);
-                    //Log.d("print", dateTime);
+
+                    editor.putString("Date and Time Saved", dateTime);
+
                 }catch(java.text.ParseException e){
 
                 }

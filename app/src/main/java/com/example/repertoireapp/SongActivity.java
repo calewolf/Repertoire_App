@@ -33,6 +33,8 @@ public class SongActivity extends AppCompatActivity {
 
         // TODO: (ADAM) Repeat the two lines above for all the other extras representing song data.
 
+
+
         position = intent.getIntExtra("Position", -1);
 
         Button cancelButton = findViewById(R.id.cancelButton2);
