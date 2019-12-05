@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".FilterMenuActivity" />
         <activity android:name=".AddSongActivity" />
+        <activity android:name=".SongActivity" />
     </application>
 
 </manifest>

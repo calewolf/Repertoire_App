@@ -7,27 +7,17 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/songMenuTitle"
-        android:layout_width="190dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="40dp"
-        android:text="Song Menu"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/songTitleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="339dp"
+        android:layout_height="128dp"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
         android:text="Song Title"
-        android:textSize="30sp"
+        android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/songMenuTitle" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/menuStyleText"
@@ -101,7 +91,7 @@
         android:layout_marginTop="50dp"
         android:ems="10"
         android:hint="Enter playtime in min."
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menuPlaytimeText" />
 

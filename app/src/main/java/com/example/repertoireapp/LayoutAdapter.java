@@ -19,6 +19,16 @@ public class LayoutAdapter extends RecyclerView.Adapter<LayoutAdapter.SongViewHo
     /** A reference to the song list passed in. */
     private ArrayList<Song> mySongList;
 
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+
+    }
 
     public static class SongViewHolder extends RecyclerView.ViewHolder {
         public TextView titleText;
@@ -27,7 +37,7 @@ public class LayoutAdapter extends RecyclerView.Adapter<LayoutAdapter.SongViewHo
         public TextView keyText;
         public TextView lastPlayedText;
         public TextView totalPlaytimeText;
-        public SongViewHolder(@NonNull View itemView) {
+        public SongViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             titleText = itemView.findViewById(R.id.titleText);
             styleText = itemView.findViewById(R.id.menuStyleText);
@@ -35,6 +45,18 @@ public class LayoutAdapter extends RecyclerView.Adapter<LayoutAdapter.SongViewHo
             keyText = itemView.findViewById(R.id.menuKeyText);
             lastPlayedText = itemView.findViewById(R.id.menuLastPlayedText);
             totalPlaytimeText = itemView.findViewById(R.id.totalPlaytimeText);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -46,7 +68,7 @@ public class LayoutAdapter extends RecyclerView.Adapter<LayoutAdapter.SongViewHo
     @Override
     public SongViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.song_row, parent, false);
-        SongViewHolder evh = new SongViewHolder(v);
+        SongViewHolder evh = new SongViewHolder(v, mListener);
         return evh;
     }
 
