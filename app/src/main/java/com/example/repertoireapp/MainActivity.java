@@ -17,9 +17,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-// TODO: (ADAM) Implement the "log song" button using the clock on the Android phone.
+// TODO: (ADAM) Implement the "log song" button using the clock on the Android phone. (DONE)
 
-// TODO: (ADAM) See SongActivity.
+// TODO: (ADAM) See SongActivity. (DONE)
 
 // TODO: (ADAM) Implement the filter menu functionality.
 
@@ -162,28 +162,23 @@ MainActivity extends AppCompatActivity {
 
 
             // TODO: (ADAM) Convert it to string format MM/DD/YY at 00:00 AM/PM (DONE)
-            String dateTime = preferences.getString("Date and Time Saved", "");
-
-            Song newSong = new Song(song[0], song[1], song[2], song[3],
-                    dateTime, 0);
 
             SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
+            SimpleDateFormat newFormat = new SimpleDateFormat("MM/dd/YY hh:mm a");
+            String dateTime = "";
 
             try {
-                Date newDate = format.parse(dateTime);
+                dateTime = newFormat.format(format.parse(new Date().toString()));
+                dateTime = dateTime.substring(0, 8) + " at " + dateTime.substring(9);
                 System.out.println(dateTime);
-                SimpleDateFormat newFormat = new SimpleDateFormat("MM/dd/YY hh:mm a");
-                //format.applyPattern("MM/dd/YY hh:mm a"); // = new SimpleDateFormat("MM/DD/YY at hh:mm a");
-                String date = newFormat.format(format.parse(dateTime));
-                String s = date.substring(0, 8) + " at " + date.substring(9);
-                System.out.println(s);
-                editor.putString("Date and Time Saved", s);
-                //System.out.println(date);
-                //Log.d("print", dateTime);
+
+                editor.putString("Date and Time Saved", dateTime);
+
             }catch(java.text.ParseException e){
 
             }
-
+            Song newSong = new Song(song[0], song[1], song[2], song[3],
+                    dateTime, 0);
             editor.apply();
 
             songList.add(newSong);
@@ -211,8 +206,6 @@ MainActivity extends AppCompatActivity {
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
                 SharedPreferences.Editor editor = preferences.edit();
                 //editor.putString("Date and Time Saved", new Date().toString());
-
-
 
                 SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
                 SimpleDateFormat newFormat = new SimpleDateFormat("MM/dd/YY hh:mm a");

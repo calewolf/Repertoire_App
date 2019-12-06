@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.w3c.dom.Text;
+
 /**
  * The menu displaying details of a singular song that can be used to log or delete songs.
  */
@@ -31,9 +33,25 @@ public class SongActivity extends AppCompatActivity {
         TextView titleText = findViewById(R.id.songTitleText);
         titleText.setText(intent.getStringExtra("Title"));
 
-        // TODO: (ADAM) Repeat the two lines above for all the other extras representing song data.
+        // TODO: (ADAM) Repeat the two lines above for all the other extras representing song data. (Done)
 
+        TextView menuText = findViewById(R.id.menuStyleText);
+        menuText.setText(intent.getStringExtra("Style"));
 
+        TextView tempoText = findViewById(R.id.menuTempoText);
+        tempoText.setText(intent.getStringExtra("Tempo"));
+
+        TextView menuKey = findViewById(R.id.menuKeyText);
+        menuKey.setText(intent.getStringExtra("Key"));
+
+        TextView lastPlayed = findViewById(R.id.menuLastPlayedText);
+        lastPlayed.setText(intent.getStringExtra("Last Played: Date/Time"));
+
+        TextView totalPlaytime = findViewById(R.id.menuPlaytimeText);
+        totalPlaytime.setText(intent.getStringExtra("Total Playtime: ### minutes"));
+
+        TextView playTimeBox = findViewById(R.id.menuPlaytimeBox);
+        playTimeBox.setText(intent.getStringExtra("Enter playtime in min."));
 
         position = intent.getIntExtra("Position", -1);
 
