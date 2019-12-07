@@ -65,6 +65,15 @@ public class FilterMenuActivity extends AppCompatActivity {
         });
     }
 
+    public void zToAsort(List<Song> songList) {
+        Collections.sort(songList, new Comparator<Song>() {
+            @Override
+            public int compare(Song o1, Song o2) {
+                return o2.getTitle().compareTo(o1.getTitle());
+            }
+        });
+    }
+
     public void filterButtonClicked() {
 
         Intent intent = new Intent(this, MainActivity.class);

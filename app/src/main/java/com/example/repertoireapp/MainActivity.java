@@ -109,19 +109,46 @@ MainActivity extends AppCompatActivity {
         RadioButton aToZButton = findViewById(R.id.aToZButton);
         RadioButton zToAButton = findViewById(R.id.zToAButton);
         RadioButton leastRecentButton = findViewById(R.id.leastRecentButton);
-        Button filterPageFilterButton = findViewById(R.id.doFilterButton);
         final FilterMenuActivity filterActivity = new FilterMenuActivity();
         final android.content.Context c = this;
         aToZButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
+                Log.d("tag", "AJSAJDKAJDKAJD");
                 filterActivity.aToZSort(songList);
-                mAdapter.notifyDataSetChanged();
+
                 setContentView(View.inflate(c, R.layout.activity_main, null));
+                Button mainFilter = findViewById(R.id.doFilterButton);
+                mainFilter.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        filterButtonClicked();
+                        Log.d("tag", "CLICKEDASADADADA");
+                    }
+                });
+                mAdapter.notifyDataSetChanged();
                 buildRecyclerView();
             }
         });
+        zToAButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filterActivity.zToAsort(songList);
+
+                setContentView(View.inflate(c, R.layout.activity_main, null));
+                Button mainFilter = findViewById(R.id.doFilterButton);
+                mainFilter.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        filterButtonClicked();
+                        Log.d("tag", "CLICKEDASADADADA");
+                    }
+                });
+                mAdapter.notifyDataSetChanged();
+                buildRecyclerView();
+            }
+        });
+
 
 
     }
