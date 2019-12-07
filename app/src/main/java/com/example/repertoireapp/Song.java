@@ -75,4 +75,5 @@ class Song {
         totalPlayMinutesInt += minutes;
         totalPlayMinutes = "Played for " + totalPlayMinutesInt + " min.";
     }
+
 }

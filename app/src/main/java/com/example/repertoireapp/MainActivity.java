@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -43,6 +44,9 @@ MainActivity extends AppCompatActivity {
     public ArrayList<Song> songList;
     /** This is the recycler view adapter that manages adding data to the view. */
     private LayoutAdapter mAdapter;
+    FilterMenuActivity filterActivity;
+    private static int prev = -1;
+    private String dateTime;
 
     /**
      * Opened when the activity is first created.
@@ -52,7 +56,7 @@ MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        filterActivity = new FilterMenuActivity();
         songList = new ArrayList<>();
         Song demo1 = new Song("Demo Song 1", "Pop", "125 bpm", "A maj",
                 "12/2/19 at 5:02 PM", 60);
@@ -106,16 +110,29 @@ MainActivity extends AppCompatActivity {
 
         setContentView(View.inflate(this, R.layout.activity_filter_menu, null));
 
-        RadioButton aToZButton = findViewById(R.id.aToZButton);
+        final RadioButton aToZButton = findViewById(R.id.aToZButton);
         RadioButton zToAButton = findViewById(R.id.zToAButton);
         RadioButton leastRecentButton = findViewById(R.id.leastRecentButton);
-        final FilterMenuActivity filterActivity = new FilterMenuActivity();
+        RadioButton mostRecentButton = findViewById(R.id.mostRecentButton);
+        RadioButton leastPlayedButton = findViewById(R.id.leastPlayedButton);
+        RadioButton mostPlayedButton = findViewById(R.id.mostPlayedButton);
+        RadioButton fastestButton = findViewById(R.id.fastestButton);
+        RadioButton slowestButton = findViewById(R.id.slowestButton);
         final android.content.Context c = this;
         aToZButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Log.d("tag", "AJSAJDKAJDKAJD");
+                Log.d("tag", "A TO Z CLICKED");
                 filterActivity.aToZSort(songList);
+
+                Button secondFilter = findViewById(R.id.doFilterButton);
+                secondFilter.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        Log.d("tag", "Filter Button Clicked Again");
+                        filterButtonClicked();
+                    }
+                });
 
                 setContentView(View.inflate(c, R.layout.activity_main, null));
                 Button mainFilter = findViewById(R.id.doFilterButton);
@@ -123,34 +140,139 @@ MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v){
                         filterButtonClicked();
-                        Log.d("tag", "CLICKEDASADADADA");
                     }
                 });
                 mAdapter.notifyDataSetChanged();
                 buildRecyclerView();
+
             }
         });
         zToAButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("tag", "Z to A Clicked");
                 filterActivity.zToAsort(songList);
-
                 setContentView(View.inflate(c, R.layout.activity_main, null));
                 Button mainFilter = findViewById(R.id.doFilterButton);
                 mainFilter.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
                         filterButtonClicked();
-                        Log.d("tag", "CLICKEDASADADADA");
+                        Log.d("tag", "Filter Button Clicked Again");
                     }
                 });
                 mAdapter.notifyDataSetChanged();
                 buildRecyclerView();
             }
         });
-
-
-
+        leastRecentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("tag", "Least Recent Clicked");
+                filterActivity.leastRecentClicked(songList);
+                setContentView(View.inflate(c, R.layout.activity_main, null));
+                Button mainFilter = findViewById(R.id.doFilterButton);
+                mainFilter.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        filterButtonClicked();
+                        Log.d("tag", "Filter Button Clicked Again");
+                    }
+                });
+                mAdapter.notifyDataSetChanged();
+                buildRecyclerView();
+            }
+        });
+        mostRecentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("tag", "Most Recent Clicked");
+                filterActivity.mostRecentClicked(songList);
+                setContentView(View.inflate(c, R.layout.activity_main, null));
+                Button mainFilter = findViewById(R.id.doFilterButton);
+                mainFilter.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        filterButtonClicked();
+                        Log.d("tag", "Filter Button Clicked Again");
+                    }
+                });
+                mAdapter.notifyDataSetChanged();
+                buildRecyclerView();
+            }
+        });
+        leastPlayedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("tag", "Least Played Clicked");
+                filterActivity.leastPlayedClicked(songList);
+                setContentView(View.inflate(c, R.layout.activity_main, null));
+                Button mainFilter = findViewById(R.id.doFilterButton);
+                mainFilter.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        filterButtonClicked();
+                        Log.d("tag", "Filter Button Clicked Again");
+                    }
+                });
+                mAdapter.notifyDataSetChanged();
+                buildRecyclerView();
+            }
+        });
+        mostPlayedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("tag", "Most Played Clicked");
+                filterActivity.mostPlayedClicked(songList);
+                setContentView(View.inflate(c, R.layout.activity_main, null));
+                Button mainFilter = findViewById(R.id.doFilterButton);
+                mainFilter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        filterButtonClicked();
+                        Log.d("tag", "Filter Button Clicked Again");
+                    }
+                });
+                mAdapter.notifyDataSetChanged();
+                buildRecyclerView();
+            }
+        });
+        fastestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("tag", "Fastest Clicked");
+                filterActivity.fastestClicked(songList);
+                setContentView(View.inflate(c, R.layout.activity_main, null));
+                Button mainFilter = findViewById(R.id.doFilterButton);
+                mainFilter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        filterButtonClicked();
+                        Log.d("tag", "Filter Button Clicked Again");
+                    }
+                });
+                mAdapter.notifyDataSetChanged();
+                buildRecyclerView();
+            }
+        });
+        slowestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("tag", "Slowest Clicked");
+                filterActivity.slowestClicked(songList);
+                setContentView(View.inflate(c, R.layout.activity_main, null));
+                Button mainFilter = findViewById(R.id.doFilterButton);
+                mainFilter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        filterButtonClicked();
+                        Log.d("tag", "Filter Button Clicked Again");
+                    }
+                });
+                mAdapter.notifyDataSetChanged();
+                buildRecyclerView();
+            }
+        });
     }
 
 
@@ -224,7 +346,7 @@ MainActivity extends AppCompatActivity {
 
             SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
             SimpleDateFormat newFormat = new SimpleDateFormat("MM/dd/YY hh:mm a");
-            String dateTime = "";
+            dateTime = "";
 
             try {
                 dateTime = newFormat.format(format.parse(new Date().toString()));
@@ -270,7 +392,7 @@ MainActivity extends AppCompatActivity {
 
                 SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
                 SimpleDateFormat newFormat = new SimpleDateFormat("MM/dd/YY hh:mm a");
-                String dateTime = "";
+                dateTime = "";
 
                 try {
                     dateTime = newFormat.format(format.parse(new Date().toString()));
