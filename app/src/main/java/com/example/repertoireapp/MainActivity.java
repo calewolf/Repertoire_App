@@ -11,11 +11,13 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 // TODO: (ADAM) Implement the "log song" button using the clock on the Android phone. (DONE)
 
@@ -87,13 +89,43 @@ MainActivity extends AppCompatActivity {
         // TODO: Make each song card clickable to open the song menu and remove/log songs.
     }
 
+    public List<Song> getSongList() {
+        return songList;
+    }
+
+    public LayoutAdapter getmAdapter() {
+        return mAdapter;
+    }
+
     /**
      * Called when the filter button is clicked, prompting the filter menu.
      */
     public void filterButtonClicked() {
         Intent intent = new Intent(this, FilterMenuActivity.class);
         startActivityForResult(intent, 2); // TODO: Implement filter button functionality.
+
+        setContentView(View.inflate(this, R.layout.activity_filter_menu, null));
+
+        RadioButton aToZButton = findViewById(R.id.aToZButton);
+        RadioButton zToAButton = findViewById(R.id.zToAButton);
+        RadioButton leastRecentButton = findViewById(R.id.leastRecentButton);
+        Button filterPageFilterButton = findViewById(R.id.doFilterButton);
+        final FilterMenuActivity filterActivity = new FilterMenuActivity();
+        final android.content.Context c = this;
+        aToZButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                filterActivity.aToZSort(songList);
+                mAdapter.notifyDataSetChanged();
+                setContentView(View.inflate(c, R.layout.activity_main, null));
+                buildRecyclerView();
+            }
+        });
+
+
     }
+
 
     /**
      * Called when the add song button is clicked, prompting the add song menu.
@@ -187,6 +219,8 @@ MainActivity extends AppCompatActivity {
         } else if (requestCode == 2 && resultCode == RESULT_OK) { // If the response comes from the filter menu
             System.out.println("Filtering/Sorting...");
 
+
+            mAdapter.notifyDataSetChanged();
             // TODO: (ADAM) Implement filtering.
 
         } else if (requestCode == 3 && resultCode == RESULT_OK) { // If the response comes from the song menu
