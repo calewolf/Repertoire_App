@@ -75,6 +75,10 @@ public class AddSongActivity extends AppCompatActivity {
             titleText = "Untitled Song";
         }
 
+        if (tempoText.isEmpty()) {
+            tempoText = "0";
+        }
+
         String[] newSongInfo = new String[]{titleText, styleText, tempoText, keyText};
 
         Intent intent = new Intent(this, MainActivity.class);

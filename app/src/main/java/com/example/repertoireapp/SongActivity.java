@@ -33,8 +33,6 @@ public class SongActivity extends AppCompatActivity {
         TextView titleText = findViewById(R.id.songTitleText);
         titleText.setText(intent.getStringExtra("Title"));
 
-        // TODO: (ADAM) Repeat the two lines above for all the other extras representing song data. (Done)
-
         TextView menuText = findViewById(R.id.menuStyleText);
         menuText.setText(intent.getStringExtra("Style"));
 
@@ -45,13 +43,10 @@ public class SongActivity extends AppCompatActivity {
         menuKey.setText(intent.getStringExtra("Key"));
 
         TextView lastPlayed = findViewById(R.id.menuLastPlayedText);
-        lastPlayed.setText(intent.getStringExtra("Last Played: Date/Time"));
+        lastPlayed.setText(intent.getStringExtra("LastPlayed"));
 
         TextView totalPlaytime = findViewById(R.id.menuPlaytimeText);
-        totalPlaytime.setText(intent.getStringExtra("Total Playtime: ### minutes"));
-
-        TextView playTimeBox = findViewById(R.id.menuPlaytimeBox);
-        playTimeBox.setText(intent.getStringExtra("Enter playtime in min."));
+        totalPlaytime.setText(intent.getStringExtra("TotalTimePlayed"));
 
         position = intent.getIntExtra("Position", -1);
 

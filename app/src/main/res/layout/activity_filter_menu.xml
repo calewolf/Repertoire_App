@@ -8,11 +8,12 @@
 
 
     <RadioGroup
+        android:id="@+id/radioGroup2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filterLabel">
 
@@ -20,51 +21,61 @@
             android:id="@+id/aToZButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="A - Z" />
+            android:checked="true"
+            android:text="A - Z"
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/zToAButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Z - A" />
+            android:text="Z - A"
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/leastRecentButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Least Recent" />
+            android:text="Least Recent"
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/mostRecentButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Most Recent" />
+            android:text="Most Recent"
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/leastPlayedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Least Played" />
+            android:text="Least Played"
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/mostPlayedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Most Played" />
+            android:text="Most Played"
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/fastestButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fastest" />
+            android:text="Fastest"
+            android:textSize="24sp" />
 
         <RadioButton
             android:id="@+id/slowestButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Slowest" />
+            android:text="Slowest"
+            android:textSize="24sp" />
 
     </RadioGroup>
+
 
     <TextView
         android:id="@+id/filterLabel"
@@ -72,46 +83,13 @@
         android:layout_height="54dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="84dp"
         android:text="Filter By:"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-    <EditText
-        android:id="@+id/styleTextBox"
-        android:layout_width="208dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:hint="Enter Style (Optional)"
-        android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/clearButton"
-        app:layout_constraintEnd_toStartOf="@+id/clearButton"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/clearButton"
-        android:layout_width="132dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="450dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="286dp"
-        android:text="Clear"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/styleTextBox"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/cancelButton"
@@ -132,13 +110,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:text="Filter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cancelButton"
-        app:layout_constraintTop_toBottomOf="@+id/styleTextBox" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

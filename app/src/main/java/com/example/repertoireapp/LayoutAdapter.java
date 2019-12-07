@@ -77,7 +77,7 @@ public class LayoutAdapter extends RecyclerView.Adapter<LayoutAdapter.SongViewHo
         Song currentItem = mySongList.get(position);
         holder.titleText.setText(currentItem.getTitle());
         holder.styleText.setText(currentItem.getStyle());
-        holder.tempoText.setText(currentItem.getTempo());
+        holder.tempoText.setText(currentItem.getTempo() + " bpm");
         holder.keyText.setText(currentItem.getKey());
         holder.lastPlayedText.setText(currentItem.getLastPlayedDate());
         holder.totalPlaytimeText.setText(currentItem.getTotalPlayMinutes());
