@@ -274,6 +274,7 @@ public class MainActivity extends AppCompatActivity {
         Collections.sort(songList, new Comparator<Song>() {
             @Override
             public int compare(Song o1, Song o2) {
+                // TODO: Somehow these are broken.
                 return o1.getLastPlayedDate().compareTo((o2.getLastPlayedDate()));
             }
         });

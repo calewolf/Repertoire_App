@@ -242,14 +242,18 @@ public class SongActivity extends AppCompatActivity {
     public void logSongButtonClicked() {
         System.out.println("The log song button was clicked.");
         EditText numMinBox = findViewById(R.id.menuPlaytimeBox);
-        if (numMinBox.getText() != null) {
-            int minutesToAdd = Integer.parseInt(numMinBox.getText().toString());
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("Type", "Log");
-            intent.putExtra("Minutes", minutesToAdd);
-            intent.putExtra("Position", position);
-            setResult(RESULT_OK, intent);
-            finish();
+        if (numMinBox.getText().length() != 0) {
+            try {
+                int minutesToAdd = Integer.parseInt(numMinBox.getText().toString());
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("Type", "Log");
+                intent.putExtra("Minutes", minutesToAdd);
+                intent.putExtra("Position", position);
+                setResult(RESULT_OK, intent);
+                finish();
+            } catch (Exception e) {
+                System.out.println("User did not enter a number.");
+            }
         }
     }
 
