@@ -46,37 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         songList = new ArrayList<>();
 
-        // Adds some demo songs.
-        Song demo1 = new Song("Demo Song 1", "Pop", "125", "A maj",
-                "12/2/19 at 5:02 PM", 60);
-        Song demo2 = new Song("Another Song Example With A Long Title", "Rock", "70", "C min",
-                "12/1/19 at 3:34 PM", 104);
-        Song demo3 = new Song("Geoff Rocks", "Jazz", "140", "A min",
-                "11/18/19 at 2:58 AM", 22);
-        Song demo4 = new Song("Nutter Butter", "Synth Pop", "135", "D maj",
-                "11/13/19 at 5:50 PM", 65);
-        Song demo5 = new Song("Lorem Ipsum", "Jazz", "112", "F maj",
-                "12/1/19 at 4:00 PM", 65);
-        Song demo6 = new Song("An Ode To CS125", "Rock", "150", "D maj",
-                "11/1/19 at 5:50 AM", 65);
-        Song demo7 = new Song("Insertion Sort Ballad", "Synth Pop", "122", "F maj",
-                "11/5/19 at 3:20 PM", 65);
-        Song demo8 = new Song("Ack", "Rock", "100", "G min",
-                "10/26/19 at 10:09 PM", 65);
-        Song demo9 = new Song("The Keys Are Stuck", "EDM", "75", "E min",
-                "12/6/19 at 5:01 AM", 65);
-        Song demo10 = new Song("Finale", "Rap", "90", "C maj",
-                "12/5/19 at 12:00 PM", 65);
-        songList.add(demo1);
-        songList.add(demo2);
-        songList.add(demo3);
-        songList.add(demo4);
-        songList.add(demo5);
-        songList.add(demo6);
-        songList.add(demo7);
-        songList.add(demo8);
-        songList.add(demo9);
-        songList.add(demo10);
+        addDemos();
 
         aToZSort();
 
@@ -399,5 +369,39 @@ public class MainActivity extends AppCompatActivity {
                 return o1TempoValue - o2TempoValue;
             }
         });
+    }
+
+    public void addDemos() {
+        // Adds some demo songs.
+        Song demo1 = new Song("Demo Song 1", "Pop", "125", "A maj",
+                "12/2/19 at 5:02 PM", 60);
+        Song demo2 = new Song("Another Song Example With A Long Title", "Rock", "70", "C min",
+                "12/1/19 at 3:34 PM", 104);
+        Song demo3 = new Song("Geoff Rocks", "Jazz", "140", "A min",
+                "11/18/19 at 2:58 AM", 22);
+        Song demo4 = new Song("Nutter Butter", "Synth Pop", "135", "D maj",
+                "11/13/19 at 5:50 PM", 65);
+        Song demo5 = new Song("Lorem Ipsum", "Jazz", "112", "F maj",
+                "12/1/19 at 4:00 PM", 65);
+        Song demo6 = new Song("An Ode To CS125", "Rock", "150", "D maj",
+                "11/1/19 at 5:50 AM", 65);
+        Song demo7 = new Song("Insertion Sort Ballad", "Synth Pop", "122", "F maj",
+                "11/5/19 at 3:20 PM", 65);
+        Song demo8 = new Song("Ack", "Rock", "100", "G min",
+                "10/26/19 at 10:09 PM", 65);
+        Song demo9 = new Song("The Keys Are Stuck", "EDM", "75", "E min",
+                "12/6/19 at 5:01 AM", 65);
+        Song demo10 = new Song("Finale", "Rap", "90", "C maj",
+                "12/5/19 at 12:00 PM", 65);
+        songList.add(demo1);
+        songList.add(demo2);
+        songList.add(demo3);
+        songList.add(demo4);
+        songList.add(demo5);
+        songList.add(demo6);
+        songList.add(demo7);
+        songList.add(demo8);
+        songList.add(demo9);
+        songList.add(demo10);
     }
 }
